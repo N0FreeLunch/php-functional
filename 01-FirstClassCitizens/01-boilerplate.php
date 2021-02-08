@@ -1,5 +1,5 @@
 <?php
-  function getPrices(array $products) {
+  function getPrices1(array $products) {
     $prices = [];
     foreach($products as $p) {
       if($p->stock > 0) {
@@ -9,7 +9,7 @@
     return $price;
   }
 
-  function getPrices(array $products) {
+  function getPrices2(array $products) {
     $prices = [];
     foreach($products as $p) {
       if($p -> stock > 0) {
