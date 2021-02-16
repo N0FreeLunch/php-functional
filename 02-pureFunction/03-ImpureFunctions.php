@@ -38,12 +38,13 @@ function updateScore(Player $player, int $points)
   $player->setScore($score + $points);
 }
 
-function getScoreData(Player $player) {
-  echo ($player -> getScore());
-}
-
 $palyer = new Player();
-updateScore($palyer, 10)
-getScoreData($player);
+$palyer -> setScore(5);
+echo $palyer -> getScore();
+echo "<br>";
+
+$palyer2 = new Player();
+updateScore($palyer2, 10);
+echo $palyer2 -> getScore();
 
  ?>
