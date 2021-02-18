@@ -16,7 +16,7 @@ $filtered = array_filter([0, 1, null, 2, [], 3, 0.0]);
 var_dump($filtered);
 echo "<br>";
 
-$data = [101,102,103,104,105,106];
+$data = [101,102,103,104,105,106,208];
 function key_only($key) {
   return $key % 2 === 0;
 }
