@@ -8,7 +8,7 @@ function while_iterative()
   return $result;
 }
 
-function while_recursive($result = 1. $continue = true)
+function while_recursive($result = 1, $continue = true)
 {
   if($continue === false) {
     return $result;
@@ -32,4 +32,18 @@ function for_recursive($result = 5, $i = 1)
   }
   return for_recursive($result * $i, $i + 1);
 }
+
+function for_with_helper()
+{
+  $helper = function ($result = 5, $i = 1) use ($helper) {
+    if($i >= 10) {
+      return $result;
+    }
+    return $helper($result * $i, $i + 1);
+  };
+  return $helper();
+}
+
+
+
  ?>
