@@ -11,6 +11,6 @@ function hanoi(int $disc, string $source, string $destination, string $via)
   }
 }
 
-var_dump(hanoi(3, 'left', 'right', 'middle'));
+hanoi(3, 'left', 'right', 'middle');
 
  ?>
