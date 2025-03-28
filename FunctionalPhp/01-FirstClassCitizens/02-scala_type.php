@@ -1,53 +1,52 @@
-<?php
+<?php declare(strict_types=0);
 
-$n = '<br>';
+echo "without strict mode \n";
 
 function add(float $a, int $b): float
 {
   return $a + $b;
 }
 
-echo "add".$n;
+printf("result of add(3.5, 1) is %.2f \n", add(3.5, 1));
 
-echo add(3.5, 1).$n;
+printf("result of add(3, 1) is %.2f \n", add(3, 1));
 
-echo add(3, 1).$n;
+printf("result of add('3.5', 1) is %.2f \n", add('3.5', 1));
 
-echo add("3.5", 1).$n;
+printf("result of add(3.5, 1.2) is %.2f \n", add(3.5, 1.2));
+// Deprecated: Implicit conversion from float 1.2 to int loses precision
 
-echo add(3.5, 1.2).$n;
+try {
+  printf("add('1 weel', 1) is %.2f \n", add('1 weel', 1));
+} catch(\Error $e) {
+  printf("print error message: %s \n", $e->getMessage());
+}
 
+try {
+  printf("add('some string', 1) is %.2f \n", add('some string', 1));
+} catch(\Error $e) {
+  printf("print error message: %s \n", $e->getMessage());
+}
 
-// error
-// echo add("1 weel", 1).$n;
-
-//error
-// echo add("some string", 1).$n;
-
-
-
-function test_bool(bool $a): string
+function boolTypeJuggling(bool $a): string
 {
   return $a ? 'true' : 'false';
 }
 
-echo "test_bool".$n;
+printf("result of boolTypeJuggling(true) is %s \n", boolTypeJuggling(true));
 
-echo test_bool(true).$n;
+printf("result of boolTypeJuggling(false) is %s \n", boolTypeJuggling(false));
 
-echo test_bool(false).$n;
+printf("result of boolTypeJuggling('') is %s \n", boolTypeJuggling(""));
 
-echo test_bool("").$n;
+printf("result of boolTypeJuggling('some string') is %s \n", boolTypeJuggling("some string"));
 
-echo test_bool("some string").$n;
+printf("result of boolTypeJuggling(0) is %s \n", boolTypeJuggling(0));
 
-echo test_bool(0).$n;
+printf("result of boolTypeJuggling(1) is %s \n", boolTypeJuggling(1));
 
-echo test_bool(1).$n;
-
-// error
-// echo test_bool([]).$n;
-
-
-
- ?>
+try {
+  printf("result of boolTypeJuggling([]) is %s \n", boolTypeJuggling([]));
+} catch(\Error $e) {
+  printf("print error message: %s \n", $e->getMessage());
+}
