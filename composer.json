@@ -1,0 +1,17 @@
+{
+    "name": "jin/php-fp",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "FunctionalPhp\\": "FunctionalPhp/",
+            "TheArtOfComposition\\": "TheArtOfComposition/",
+            "ThinkingFunctionallyInPhp\\": "ThinkingFunctionallyInPhp/"
+        }
+    },
+    "authors": [
+        {
+            "name": "N0FreeLunch"
+        }
+    ],
+    "require": {}
+}
