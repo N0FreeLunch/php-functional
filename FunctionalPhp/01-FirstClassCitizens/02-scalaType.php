@@ -19,13 +19,13 @@ printf("result of add(3.5, 1.2) is %.2f \n", add(3.5, 1.2));
 try {
   printf("add('1 weel', 1) is %.2f \n", add('1 weel', 1));
 } catch(\Error $e) {
-  printf("print error message: %s \n", $e->getMessage());
+  printf("error of add('1 weel', 1): %s \n", $e->getMessage());
 }
 
 try {
   printf("add('some string', 1) is %.2f \n", add('some string', 1));
 } catch(\Error $e) {
-  printf("print error message: %s \n", $e->getMessage());
+  printf("error of add('some string', 1): %s \n", $e->getMessage());
 }
 
 function boolTypeJuggling(bool $a): string
@@ -48,5 +48,5 @@ printf("result of boolTypeJuggling(1) is %s \n", boolTypeJuggling(1));
 try {
   printf("result of boolTypeJuggling([]) is %s \n", boolTypeJuggling([]));
 } catch(\Error $e) {
-  printf("print error message: %s \n", $e->getMessage());
+  printf("error of boolTypeJuggling([]): %s \n", $e->getMessage());
 }
