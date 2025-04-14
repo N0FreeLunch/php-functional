@@ -5,10 +5,10 @@ $add = function(float $a, float $b): float {
 };
 
 $result = $add(5, 10);
-var_dump($result);
+printf('the result of $add(5, 10) is %.2f'.PHP_EOL, $result);
 
 $sum = array_reduce([1, 2, 3, 4, 5], $add, 0);
-var_dump($sum);
+printf('the result of array_reduce([1, 2, 3, 4, 5], $add, 0) is %.2f \n'.PHP_EOL, $sum);
 
 $uppercase = array_map(function(string $s): string {
   return strtoupper($s);
@@ -23,5 +23,6 @@ function returnNewFunction()
   };
 }
 
-printf("named function: %s\n", returnNewFunction()::class); // named function: Closure
-var_dump(returnNewFunction()(1,2,3));
+printf("named function type: %s\n", returnNewFunction()::class); // named function: Closure
+
+printf("call returned closure as returnNewFunction()(1,2,3) : %s \n", var_export(returnNewFunction()(1,2,3))); // named function: Closure
