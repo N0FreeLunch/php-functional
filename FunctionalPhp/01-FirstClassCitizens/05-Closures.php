@@ -1,34 +1,40 @@
-<?php
+<?php declare(strict_types=1);
 
-$some_variable = 'value';
+/**
+ * warning to Exception
+ */
+set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+  throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+});
 
-$my_closure = function()
-{
-  return $some_variable;
+$outerVariable = '[value: outerVariable]';
+
+try {
+  $closureNotCaptured = function() {
+    return $outerVariable;
+  };
+  $result = $closureNotCaptured();
+  printf('$outerVariable captured %s'.PHP_EOL, $result);
+} catch (Throwable $e) {
+  printf('$outerVariable dose not captured %s'.PHP_EOL, $e->getMessage());
+}
+
+$closureCaptured = function () use ($outerVariable) {
+  return $outerVariable;
 };
 
-$result = $my_closure();
-var_dump($result);
-echo "<br>";
+printf('$outerVariable captured %s'.PHP_EOL, $closureCaptured());
 
-
-$my_closure = function () use($some_variable)
-{
-  return $some_variable;
-};
-
-var_dump($my_closure());
-echo "<br>";
-
-
-$s = 'orange';
-$my_closure = function() use($s) { echo $s; };
-$my_closure();
-echo "<br>";
+$a = 'orange';
+$orangeCaptured = function() use ($a) { return $a; };
+printf('orange captured : %s', $orangeCaptured().PHP_EOL);
 
 $a = 'banana';
-$my_closure();
-echo "<br>";
+printf('banana not captured : %s', $orangeCaptured().PHP_EOL);
 
+$b = 'orange';
+$orangeCaptured = function() use (&$b) { return $b; };
+printf('orange captured : %s', $orangeCaptured().PHP_EOL);
 
- ?>
+$b = 'banana';
+printf('banana captured : %s', $orangeCaptured().PHP_EOL);
