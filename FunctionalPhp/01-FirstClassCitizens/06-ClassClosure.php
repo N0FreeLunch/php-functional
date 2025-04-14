@@ -1,18 +1,21 @@
-<?php
+<?php declare(strict_types=1);
 
 class ClosureInsideClass
 {
-  public function testing()
+  public function returnThisCapturedClosure()
   {
     return function () {
-      var_dump($this);
+      var_dump($this->privateMethod()); // string(13) "privateMethod"
     };
+  }
+
+  private function privateMethod()
+  {
+    return 'privateMethod';
   }
 };
 
 $object = new ClosureInsideClass();
-$test = $object->testing();
+$test = $object->returnThisCapturedClosure();
 
 $test();
-
- ?>
