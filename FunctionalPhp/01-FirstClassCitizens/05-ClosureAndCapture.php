@@ -25,16 +25,16 @@ $closureCaptured = function () use ($outerVariable) {
 
 printf('$outerVariable captured %s'.PHP_EOL, $closureCaptured());
 
-$a = 'orange';
-$orangeCaptured = function() use ($a) { return $a; };
+$copyVariable = 'orange';
+$orangeCaptured = function() use ($copyVariable) { return $copyVariable; };
 printf('orange captured : %s', $orangeCaptured().PHP_EOL);
 
-$a = 'banana';
+$copyVariable = 'banana';
 printf('banana not captured : %s', $orangeCaptured().PHP_EOL);
 
-$b = 'orange';
-$orangeCaptured = function() use (&$b) { return $b; };
-printf('orange captured : %s', $orangeCaptured().PHP_EOL);
+$referenceVariable = 'ringo';
+$ringoCaptured = function() use (&$referenceVariable) { return $referenceVariable; };
+printf('ringo captured : %s', $ringoCaptured().PHP_EOL);
 
-$b = 'banana';
-printf('banana captured : %s', $orangeCaptured().PHP_EOL);
+$referenceVariable = 'banana';
+printf('banana captured : %s', $ringoCaptured().PHP_EOL);
