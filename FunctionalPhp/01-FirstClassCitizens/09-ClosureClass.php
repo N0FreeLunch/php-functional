@@ -1,10 +1,9 @@
-<?php
+<?php declare(strict_types=1);
+
 $returnClosure = function () {
   return function () {
     return "Closure";
   };
 };
 
-$className = get_class($returnClosure);
-var_dump($className);
- ?>
+printf("anonymous function is %s class \n", get_class($returnClosure));
