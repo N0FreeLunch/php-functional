@@ -1,36 +1,31 @@
-<?php
+<?php declare(strict_types=1);
 
-class A {
-  static function hello($name) {
-    return "Hello $name !\n";
+class A
+{
+  static public function publicStaticMethod(string $returnedName): string
+  {
+    return $returnedName;
   }
-  function __invoke($name) {
-    return self::hello($name);
+
+  public function publicNonStaticMethod(string $returnedName): string
+  {
+    return $returnedName;
+  }
+
+  public function __invoke(string $name): string
+  {
+    return self::publicStaticMethod($name);
   }
 }
 
-$callback = ['A', 'hello'];
-var_dump($callback('World'));
-echo "<br>";
+printf('call A::publicStaticMethod(\'hello world\') as array callable'.PHP_EOL, (['A', 'publicStaticMethod'])('hello world'));
 
+printf('call A::publicStaticMethod(\'hello world\') as string callable'.PHP_EOL, 'A::publicStaticMethod'('hello world'));
 
-$callback = 'A::hello';
-var_dump($callback('World'));
-echo "<br>";
+printf('call (new A)->publicNonStaticMethod(\'hello world\') %s'.PHP_EOL, ([new A, 'publicNonStaticMethod'])('hello world'));
 
-$a = new A();
-$callback = [$a, 'hello'];
-var_dump($callback('World'));
-echo "<br>";
-
-$callback = $a;
-$callback('World');
-
-$callback = function(string $s) {
+$callHelloSomething = function(string $s) {
   return "Hello $s !\n";
 };
-$callback('World');
 
-var_dump(call_user_func_array($callback, ['World']));
-
- ?>
+printf('call function by call_user_func_array(callable $fn, array $args)', call_user_func_array($callHelloSomething, ['World']));
